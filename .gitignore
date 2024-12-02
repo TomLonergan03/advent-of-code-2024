@@ -29,4 +29,5 @@ cabal.project.local~
 # End of https://www.toptal.com/developers/gitignore/api/haskell
 
 input/
-src/day_[0-9]*
+src/day_[0-9]
+src/day_[0-9][0-9]
