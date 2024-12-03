@@ -9,26 +9,27 @@ parseLine :: String -> [Int]
 parseLine line = map read (words line)
 
 countTrue :: [Bool] -> Int
-countTrue xs = foldl (\acc x -> case x of { True -> acc + 1; False -> acc }) 0 xs
+countTrue xs = foldl (\acc x -> case x of True -> acc + 1; False -> acc) 0 xs
 
 -- Part 1
 countSafe :: [[Int]] -> Int
 countSafe reports = countTrue $ map safe reports
-    where safe xs = safePred (\(x,y) -> x < y && y - x <= 3) xs || safePred (\(x,y) -> x > y && x - y <= 3) xs
-          safePred p xs = all p $ zip xs $ tail xs
+  where
+    safe xs = safePred (\(x, y) -> x < y && y - x <= 3) xs || safePred (\(x, y) -> x > y && x - y <= 3) xs
+    safePred p xs = all p $ zip xs $ tail xs
 
 -- Part 2
 countSafeDampened :: [[Int]] -> Int
 countSafeDampened reports = countTrue $ map safe reports
-    where safe xs = safePred (\(x,y) -> x < y && y - x <= 3) xs || safePred (\(x,y) -> x > y && x - y <= 3) xs
-          safePred :: ((Int, Int) -> Bool) -> [Int] -> Bool
-          safePred p xs = (all p $ zip xs $ tail xs) || (any (all p) $ map (\x -> zip x $ tail x) [x | x <- subsequences xs, length x == length xs - 1])
+  where
+    safe xs = safePred (\(x, y) -> x < y && y - x <= 3) xs || safePred (\(x, y) -> x > y && x - y <= 3) xs
+    safePred :: ((Int, Int) -> Bool) -> [Int] -> Bool
+    safePred p xs = (all p $ zip xs $ tail xs) || (any (all p) $ map (\x -> zip x $ tail x) [x | x <- subsequences xs, length x == length xs - 1])
 
 run :: IO ()
 run = do
-    reports <- parseFile filePath parseLine
-    putStr "Part 1: "
-    print $ countSafe reports
-    putStr "Part 2: "
-    print $ countSafeDampened reports
-
+  reports <- parseFile filePath parseLine
+  putStr "Part 1: "
+  print $ countSafe reports
+  putStr "Part 2: "
+  print $ countSafeDampened reports
