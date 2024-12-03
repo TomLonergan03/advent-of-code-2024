@@ -1,16 +1,12 @@
-import System.IO (readFile)
-import Data.List (sort, subsequences)
+module Day2 (run) where
 
-filePath = "../input/day_2.txt"
+import Data.List (sort, subsequences)
+import Utils (parseFile)
+
+filePath = "input/day_2.txt"
 
 parseLine :: String -> [Int]
 parseLine line = map read (words line)
-
-parseFile :: FilePath -> IO [[Int]]
-parseFile filePath = do
-    contents <- readFile filePath
-    let linesOfFile = lines contents
-    return $ map parseLine linesOfFile
 
 countTrue :: [Bool] -> Int
 countTrue xs = foldl (\acc x -> case x of { True -> acc + 1; False -> acc }) 0 xs
@@ -28,9 +24,9 @@ countSafeDampened reports = countTrue $ map safe reports
           safePred :: ((Int, Int) -> Bool) -> [Int] -> Bool
           safePred p xs = (all p $ zip xs $ tail xs) || (any (all p) $ map (\x -> zip x $ tail x) [x | x <- subsequences xs, length x == length xs - 1])
 
-main :: IO ()
-main = do
-    reports <- parseFile filePath
+run :: IO ()
+run = do
+    reports <- parseFile filePath parseLine
     putStr "Part 1: "
     print $ countSafe reports
     putStr "Part 2: "

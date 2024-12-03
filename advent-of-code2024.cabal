@@ -1,0 +1,19 @@
+cabal-version:      2.4
+name:               advent-of-code2024
+version:            0.1.0.0
+build-type:         Simple
+
+author:             Tom Lonergan
+maintainer:         tomlonergan91@gmail.com
+
+executable advent-of-code2024
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    build-depends:    base ^>=4.16.4.0, advent-of-code2024
+    default-language: Haskell2010
+
+library
+  hs-source-dirs: lib
+  exposed-modules: Day1, Day2, Utils
+  build-depends: base ^>=4.16.4.0
+  default-language: Haskell2010
