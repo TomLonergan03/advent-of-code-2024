@@ -1,15 +1,12 @@
 module Day2 (run) where
 
 import Data.List (sort, subsequences)
-import Utils (parseFile)
+import Utils (parseFile, countTrue)
 
 filePath = "input/day_2.txt"
 
 parseLine :: String -> [Int]
 parseLine line = map read (words line)
-
-countTrue :: [Bool] -> Int
-countTrue xs = foldl (\acc x -> case x of True -> acc + 1; False -> acc) 0 xs
 
 -- Part 1
 countSafe :: [[Int]] -> Int
