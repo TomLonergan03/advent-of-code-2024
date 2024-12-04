@@ -3,6 +3,8 @@ module Day1 (run) where
 import Data.List (sort)
 import Utils (parseFile)
 
+filePath = "input/day_1.txt"
+
 parseLine :: String -> (Int, Int)
 parseLine line =
   let [x, y] = map read (words line)
@@ -20,7 +22,7 @@ similarity (a, b) = sum $ map (\x -> x * count x b) a
 
 run :: IO ()
 run = do
-  pairs <- parseFile "input/day_1.txt" parseLine
+  pairs <- parseFile filePath parseLine
   putStr "Part 1: "
   print $ distance $ unzip pairs
   putStr "Part 2: "
