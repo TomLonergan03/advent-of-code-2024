@@ -1,6 +1,5 @@
 module Day3 (run) where
 
-import Data.List (sort, subsequences)
 import Text.Regex.PCRE
 import Utils (parseFile)
 

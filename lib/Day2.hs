@@ -1,7 +1,7 @@
 module Day2 (run) where
 
-import Data.List (sort, subsequences)
-import Utils (parseFile, countTrue)
+import Data.List (subsequences)
+import Utils (countTrue, parseFile)
 
 filePath = "input/day_2.txt"
 

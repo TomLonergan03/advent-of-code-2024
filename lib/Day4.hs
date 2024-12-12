@@ -1,7 +1,6 @@
 module Day4 (run) where
 
-import Data.List (isPrefixOf, nub, sort, subsequences, transpose)
-import Text.Regex.PCRE
+import Data.List (isPrefixOf, transpose)
 import Utils (countTrue, parseFile)
 
 filePath = "input/day_4.txt"
@@ -23,7 +22,7 @@ findAllXmas ss = sum $ map countXmas $ inputStrings ss
     countXmas x = if x == [] then 0 else if "XMAS" `isPrefixOf` x || "SAMX" `isPrefixOf` x then 1 + (countXmas $ tail x) else countXmas $ tail x
 
 -- Part 2
--- findAllX_mas :: [String] -> Int
+findAllX_mas :: [String] -> Int
 findAllX_mas ss = countTrue $ map (isX_mas . getAllDiagonals . square ss) $ squareCorners ss
   where
     squareCorners :: [String] -> [(Int, Int)]
