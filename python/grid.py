@@ -12,14 +12,18 @@ class Grid:
             return None
         return self.grid[self.max_y - y][x]
 
-    def get_str(self):
-        return ''.join([''.join(row) for row in self.grid])
+    def count(self, val):
+        return len(self.find_matches(val))
 
-    def set(self, x, y, value):
+    def set(self, x, y, value, panic_on_fail=True):
         if x < 0 or x > self.max_x or self.max_y - y < 0 or self.max_y - y > self.max_y:
-            raise Exception("out of bounds", (x, y),
-                            "maxes are", (self.max_x, self.max_y))
+            if panic_on_fail:
+                raise Exception("out of bounds", (x, y),
+                                "maxes are", (self.max_x, self.max_y))
+            return False
         self.grid[self.max_y - y][x] = value
+        if not panic_on_fail:
+            return True
 
     def get_move(self, x, y, direction):
         match direction:
@@ -45,4 +49,10 @@ class Grid:
     def print(self):
         for row in self.grid:
             print(row)
+        print()
+
+    def pretty_print(self):
+        for row in self.grid:
+            print(str(row).replace('[', '').replace(
+                ']', '').replace(', ', '').replace('\'', ''))
         print()
