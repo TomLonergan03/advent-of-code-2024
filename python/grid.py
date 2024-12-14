@@ -2,8 +2,11 @@ from typing import List
 
 
 class Grid:
-    def __init__(self, string: List[str]):
+    def __init__(self, string: List[str], cast=None):
         self.grid = list(map(lambda x: list(x)[:-1], string))
+        if cast:
+            self.grid = list(
+                map(lambda x: list(map(lambda y: cast(y), x)), self.grid))
         self.max_y = len(self.grid) - 1
         self.max_x = len(self.grid[0]) - 1
 
