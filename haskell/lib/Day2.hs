@@ -3,7 +3,7 @@ module Day2 (run) where
 import Data.List (subsequences)
 import Utils (countTrue, parseFile)
 
-filePath = "input/day_2.txt"
+filePath = "../input/day_2.txt"
 
 parseLine :: String -> [Int]
 parseLine line = map read (words line)

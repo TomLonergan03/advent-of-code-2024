@@ -4,7 +4,7 @@ import Data.HashMap.Strict (HashMap, fromList, member, (!))
 import Data.List.Split (splitOn)
 import Utils (parseFile)
 
-filePath = "input/day_5.txt"
+filePath = "../input/day_5.txt"
 
 isInOrder :: [(Int, Int)] -> [Int] -> Bool
 isInOrder page_rules page_order = all (\page -> all id [elem p $ takeWhile (/= page) page_order | p <- map fst $ pagesThatMustComeBefore page_rules page_order page]) page_order

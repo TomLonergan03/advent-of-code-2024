@@ -3,7 +3,7 @@ module Day4 (run) where
 import Data.List (isPrefixOf, transpose)
 import Utils (countTrue, parseFile)
 
-filePath = "input/day_4.txt"
+filePath = "../input/day_4.txt"
 
 getAllDiagonals :: [String] -> [String]
 getAllDiagonals m = getAllDiagonals' m ++ getAllDiagonals' (map reverse m)

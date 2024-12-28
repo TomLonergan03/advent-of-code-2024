@@ -3,7 +3,7 @@ module Day3 (run) where
 import Text.Regex.PCRE
 import Utils (parseFile)
 
-filePath = "input/day_3.txt"
+filePath = "../input/day_3.txt"
 
 -- Part 1
 findMul :: String -> Int

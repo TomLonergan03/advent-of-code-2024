@@ -3,7 +3,7 @@ module Day1 (run) where
 import Data.List (sort)
 import Utils (parseFile)
 
-filePath = "input/day_1.txt"
+filePath = "../input/day_1.txt"
 
 parseLine :: String -> (Int, Int)
 parseLine line =
